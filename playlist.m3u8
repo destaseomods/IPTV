@@ -3,6 +3,8 @@
 https://fe.tring.al/delta/105/out/u/1200_1.m3u8
 #EXTINF:-1 tvg-name="A2 CNN Albania" tvg-logo="https://i.imgur.com/TgO3Lzi.png" tvg-id="A2CNN.al" group-title="Albania",A2 CNN Albania
 https://tv.a2news.com/live/smil:a2cnnweb.stream.smil/playlist.m3u8
+#EXTINF:-1 tvg-name="TESSTTT" tvg-logo="https://cdn.prod.website-files.com/660affa848e8af81bdd03909/66ab7f671fb90c022fb7f1dc_Agora Logo Crisp-p-500.png" tvg-id="TESST" group-title="TEST",NJANJAL
+https://fhlsport23.fls38.xyz/token-dhMtz%2BXBLPKGvGQowPY6y2zQlJqBjHrjZCSswfQfEGH27rmaHUFdCYIopBNAWkpJBCeIxTNhkA%3D%3Da/v3/get/s3/aHR0cHM6Ly9wbGF5LnJ3YWJ3by5jb20=/rrty/sd-1-4184573.m3u8?txSecret=0ddf969dc2d47cdff3b81491092d655c&txTime=679F2ACA
 #EXTINF:-1 tvg-name="ABC News Albania Ⓣ" tvg-logo="https://i.imgur.com/aObcudw.png" tvg-id="ABCNewsAlbania.al" group-title="Albania",ABC News Albania Ⓣ
 https://www.twitch.tv/abcnewsal
 #EXTINF:-1 tvg-name="AlbKanale Music TV Ⓢ" tvg-logo="https://i.imgur.com/JdKxscs.png" tvg-id="AlbKanaleMusicTV.al" group-title="Albania",AlbKanale Music TV Ⓢ
