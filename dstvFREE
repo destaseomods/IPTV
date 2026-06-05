@@ -1,7 +1,9 @@
-#EXTINF:-1 group-title="Drama" tvg-logo="https://i.postimg.cc/nrPHX66g/ezgif-6-a457ded6d0.png",Citra Drama Plus
-#EXTVLCOPT:http-referrer=https://www.vidio.com/
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36
-http://vod.linknetott.swiftcontent.com/Content/HLS/Live/Channel(ch379)/index.m3u8
+
+#EXTINF:-1 group-title="SHAREEXT@ VIDIO_" tvg-logo="https://www.lyngsat.com/logo/tv/cc/citra-drama-id.png",CITRA DRAMA
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 15; itel S688LN Build/AP3A.240905.015.A2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Mobile Safari/537.36
+#EXTHTTP:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODA1NjUxNTEsImRhdGEiOiJzYW50dl9tM3UifQ.8MWRy3aOgSinFKk26PaT9H1SHbfsbzeFctAzsqRvL4Q"}
+https://dashim.biz.id/api/play.php?token=XB-xnPfTt8XBFoiDWxhaZmBMQD1QRjougj_ns53Ys0WWU2h9HjqINtK98DoiPeZHODhzNzIxSFRXNk9PTHh0T2k5Z3VzZkRMckxOY0ttYXdBWkNFYi8za2lPYWhOUXZGSmxMRGgwYlovQ2VabW1aMjN0Szg0Z09Rb2NMRjlBUWVEbnhDVmNMak04NjQ4Ym53MlFEYzRxSDdXL0k9&ext=.mpd
+
 
 #EXTM3U
 #EXTINF:-1 tvg-logo="https://cdnjkt913.transvision.co.id:1000/image/web/channel/4028c685651d7bcc01651f0b6d210096/1965733f57cc4d10a8466d39ce0a1ec6.jpg" group-title="tes",Trans TV
