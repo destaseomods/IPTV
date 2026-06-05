@@ -1,7 +1,6 @@
-#EXTINF:-1 group-title="ShareExt@Relax" tvg-logo="https://i.postimg.cc/nrPHX66g/ezgif-6-a457ded6d0.png",RCTI (mpd)
-#EXTVLCOPT:http-referrer=https://www.visionplus.id/
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36
-https://dashim.biz.id/api/play.php?token=nxJl9yHJVxllwleKxfzvzk7BVdVREI7sIArg2b3qWRqL7MnTq5tD68xAIilJYGQdZFJUTEdlRllWUnpHVkhnK2pOaXBraGlsb0w2SXk0OVEzMCtFajlBRktsZ2diYy8vRHV1VHRKVE0yaDRpT1FLcmpOM2ZaU0l4UVFXV3plN2FzbmVsVDNiTEk1ZWpUWXR1eXNhNzkyN3h
+#EXTINF:-1 group-title="Drama" tvg-logo="https://i.postimg.cc/nrPHX66g/ezgif-6-a457ded6d0.png",Citra Drama
+#EXTVLCOPT:http-referrer=https://www.vidio.com/
+https://vod.linknetott.swiftcontent.com/Content/HLS/Live/Channel(ch378)/index.m3u8
 
 #EXTM3U
 #EXTINF:-1 tvg-logo="https://cdnjkt913.transvision.co.id:1000/image/web/channel/4028c685651d7bcc01651f0b6d210096/1965733f57cc4d10a8466d39ce0a1ec6.jpg" group-title="tes",Trans TV
