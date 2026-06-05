@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlist M3U Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background: #f4f4f4; }
+        button { padding: 15px 30px; font-size: 18px; background: #007bff; color: white; border: none; border-radius: 8px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        #status { margin-top: 20px; font-size: 16px; }
+        pre { text-align: left; max-width: 800px; margin: 20px auto; background: white; padding: 15px; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <h1>🎥 Dashboard IPTV - M3U Generator</h1>
+    <button onclick="generatePlaylist()">🔄 Generate & Download Playlist M3U</button>
+    <div id="status"></div>
+
+    <script>
+        const API_URL = "https://dashim.biz.id/api/android/api_get_playlists.php";
+
+        const headers = {
+            "Device-ID": "aedab7ac79134d3e",
+            "Vip-Status": "1",
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODA0ODU5MjUsImRhdGEiOiJzYW50dl9hcHAifQ.vQwaOR6Fx9q0UGkMNsaSxVWdQ8Gz_f_lwsH7G_C9q1s",
+            "X-Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODA0ODU5MjUsImRhdGEiOiJzYW50dl9hcHAifQ.vQwaOR6Fx9q0UGkMNsaSxVWdQ8Gz_f_lwsH7G_C9q1s",
+            "Device-Fingerprint": "22111317PG|moonstone|POCO/moonstone_p_id/moonstone:14/UKQ1.231003.002/V816.0.21.0.UMPIDXM:user/release-keys",
+            "App-Build": "26",
+            "Device-Name": "Xiaomi 22111317PG",
+            "User-Agent": "okhttp/4.12.0"
+        };
+
+        async function generatePlaylist() {
+            const status = document.getElementById('status');
+            status.innerHTML = "⏳ Sedang mengambil data dari server...";
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: "GET",
+                    headers: headers,
+                    mode: "cors"   // penting
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP Error: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                // Buat konten M3U
+                let m3u = "#EXTM3U\n";
+                const channels = data.playlists || data.channels || data;
+
+                if (!Array.isArray(channels) || channels.length === 0) {
+                    throw new Error("Tidak ada channel ditemukan");
+                }
+
+                channels.forEach(item => {
+                    const title = item.name || item.title || "Unknown";
+                    const stream = item.url || item.stream_url || item.link || "";
+                    const logo = item.logo || item.image || "";
+                    const group = item.group || item.category || "Live TV";
+
+                    if (stream) {
+                        m3u += `#EXTINF:-1 group-title="\( {group}" tvg-logo=" \){logo}",${title}\n`;
+                        m3u += stream + "\n";
+                    }
+                });
+
+                // Download file
+                const blob = new Blob([m3u], { type: "text/plain" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = `playlist_${new Date().toISOString().slice(0,19).replace(/:/g,'-')}.m3u`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+
+                status.innerHTML = `✅ Berhasil! Playlist dengan <b>${channels.length}</b> channel sudah didownload.`;
+
+            } catch (error) {
+                console.error(error);
+                status.innerHTML = `❌ Gagal: ${error.message}<br><br><small>Cek console browser (F12) untuk detail.</small>`;
+            }
+        }
+    </script>
+</body>
+</html>
