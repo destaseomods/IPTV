@@ -3,22 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Playlist M3U Generator</title>
+    <title>M3U Generator - Dashim</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background: #f4f4f4; }
-        button { padding: 15px 30px; font-size: 18px; background: #007bff; color: white; border: none; border-radius: 8px; cursor: pointer; }
-        button:hover { background: #0056b3; }
-        #status { margin-top: 20px; font-size: 16px; }
-        pre { text-align: left; max-width: 800px; margin: 20px auto; background: white; padding: 15px; border-radius: 8px; }
+        body { font-family: Arial, sans-serif; text-align: center; padding: 40px; background: #0f0f0f; color: white; }
+        button { padding: 15px 40px; font-size: 20px; background: #28a745; color: white; border: none; border-radius: 10px; cursor: pointer; }
+        button:hover { background: #218838; }
+        #status { margin: 25px; font-size: 18px; min-height: 30px; }
     </style>
 </head>
 <body>
-    <h1>🎥 Dashboard IPTV - M3U Generator</h1>
-    <button onclick="generatePlaylist()">🔄 Generate & Download Playlist M3U</button>
+    <h1>🎞️ Dashim Playlist Generator</h1>
+    <button onclick="generatePlaylist()">🚀 Generate & Download M3U</button>
     <div id="status"></div>
 
     <script>
         const API_URL = "https://dashim.biz.id/api/android/api_get_playlists.php";
+
+        // CORS Proxy (coba ganti kalau satu tidak works)
+        const PROXY = "https://corsproxy.io/?";
 
         const headers = {
             "Device-ID": "aedab7ac79134d3e",
@@ -33,56 +35,48 @@
 
         async function generatePlaylist() {
             const status = document.getElementById('status');
-            status.innerHTML = "⏳ Sedang mengambil data dari server...";
+            status.innerHTML = "⏳ Sedang mengambil playlist...";
 
             try {
-                const response = await fetch(API_URL, {
+                const response = await fetch(PROXY + encodeURIComponent(API_URL), {
                     method: "GET",
-                    headers: headers,
-                    mode: "cors"   // penting
+                    headers: headers
                 });
 
-                if (!response.ok) {
-                    throw new Error(`HTTP Error: ${response.status}`);
-                }
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
                 const data = await response.json();
 
-                // Buat konten M3U
                 let m3u = "#EXTM3U\n";
-                const channels = data.playlists || data.channels || data;
+                const channels = data.playlists || data.channels || (Array.isArray(data) ? data : []);
 
-                if (!Array.isArray(channels) || channels.length === 0) {
-                    throw new Error("Tidak ada channel ditemukan");
+                if (channels.length === 0) {
+                    throw new Error("Tidak ada channel ditemukan di response");
                 }
 
                 channels.forEach(item => {
-                    const title = item.name || item.title || "Unknown";
+                    const title = item.name || item.title || "Untitled";
                     const stream = item.url || item.stream_url || item.link || "";
                     const logo = item.logo || item.image || "";
-                    const group = item.group || item.category || "Live TV";
+                    const group = item.group || item.category || "Live";
 
                     if (stream) {
-                        m3u += `#EXTINF:-1 group-title="\( {group}" tvg-logo=" \){logo}",${title}\n`;
-                        m3u += stream + "\n";
+                        m3u += `#EXTINF:-1 group-title="\( {group}" tvg-logo=" \){logo}",\( {title}\n \){stream}\n`;
                     }
                 });
 
-                // Download file
-                const blob = new Blob([m3u], { type: "text/plain" });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement("a");
-                a.href = url;
-                a.download = `playlist_${new Date().toISOString().slice(0,19).replace(/:/g,'-')}.m3u`;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
+                // Download
+                const blob = new Blob([m3u], { type: 'text/plain' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = `dashim_playlist_${new Date().toISOString().slice(0,19).replace(/[:T]/g, '-')}.m3u`;
+                link.click();
 
-                status.innerHTML = `✅ Berhasil! Playlist dengan <b>${channels.length}</b> channel sudah didownload.`;
+                status.innerHTML = `✅ Sukses! ${channels.length} channel telah didownload.`;
 
-            } catch (error) {
-                console.error(error);
-                status.innerHTML = `❌ Gagal: ${error.message}<br><br><small>Cek console browser (F12) untuk detail.</small>`;
+            } catch (err) {
+                console.error(err);
+                status.innerHTML = `❌ Gagal: ${err.message}<br><br>Coba refresh atau ganti proxy.`;
             }
         }
     </script>
