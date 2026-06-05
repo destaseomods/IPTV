@@ -1,9 +1,7 @@
 #EXTINF:-1 group-title="Drama" tvg-logo="https://i.postimg.cc/nrPHX66g/ezgif-6-a457ded6d0.png",Citra Drama (Vidio)
 #EXTVLCOPT:http-referrer=https://www.vidio.com/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36
-https://cdnjkt01-vidio.akamaized.net/live/1404.m3u8
-
-
+http://vod.linknetott.swiftcontent.com/Content/HLS/Live/Channel(ch378)/index.m3u8
 
 
 #EXTM3U
